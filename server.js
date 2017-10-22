@@ -17,7 +17,7 @@ router.get(process.env.STATUS_ROUTE, async ctx => {
 router.get(process.env.UPDATE_ROUTE, async ctx => {
   let seed = await getLastTweetId();
   let tweets = await tweetsSince(seed);
-  for (let i=0; i<tweets.length; i++) {
+  for (let i=tweets.length-1; i>=0; i--) {
     let {text, created_at, id} = tweets[i];
     let translation = await toSpanish(text);
     await saveTweet({text, created_at, id, spanish:translation });

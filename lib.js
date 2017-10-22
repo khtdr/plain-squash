@@ -30,7 +30,7 @@ sequelize.authenticate().then(() => {
     id: { type: Sequelize.STRING, primaryKey:true },
     created_at: { type: Sequelize.DATE },
   });
-  Tweet.sync({force:true});
+  Tweet.sync();
 }).catch(err => console.error(err));
 
 // export functions
