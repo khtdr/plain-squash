@@ -1,4 +1,3 @@
-
 // sets up a twitter client with the correct credentials
 let twitter = new require('twit')({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -24,17 +23,15 @@ let sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PA
 
 // define the simple "Tweet" schema
 let Tweet;
-sequelize.authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.');
-    Tweet = sequelize.define('tweets', {
-      text: { type: Sequelize.STRING },
-      spanish: { type: Sequelize.STRING },
-      id: { type: Sequelize.STRING, primaryKey:true },
-      created_at: { type: Sequelize.DATE }
-    });
-    Tweet.sync({force:true});
-}).catch(err => console.log('Unable to connect to the database: ', err));
+sequelize.authenticate().then(() => {
+  Tweet = sequelize.define('tweets', {
+    text: { type: Sequelize.STRING },
+    spanish: { type: Sequelize.STRING },
+    id: { type: Sequelize.STRING, primaryKey:true },
+    created_at: { type: Sequelize.DATE },
+  });
+  Tweet.sync({force:true});
+}).catch(err => console.error(err));
 
 
 // export functions

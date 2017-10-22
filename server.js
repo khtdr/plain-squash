@@ -1,4 +1,3 @@
-
 const Koa = require('koa');
 const router = require('koa-router')();
 
@@ -6,10 +5,8 @@ const {
   selectRecentTweets, getLastTweetId, tweetsSince, toSpanish, saveTweet, postTweet
 } = require('./lib');
 
-router.get('/', async ctx => {
-  ctx.body = `
-    <a href="https://twitter.com/donald_espanol">https://twitter.com/donald_espanol</a>
-  `;
+router.get('/', ctx => {
+  ctx.body = '<a href="https://twitter.com/donald_espanol">https://twitter.com/donald_espanol</a>';
 });
 
 router.get(process.env.STATUS_ROUTE, async ctx => {
@@ -29,9 +26,7 @@ router.get(process.env.UPDATE_ROUTE, async ctx => {
   ctx.body = 'OK';
 });
 
-
 let app = new Koa();
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(3000);
-
