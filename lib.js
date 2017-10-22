@@ -7,7 +7,7 @@ let twitter = new require('twit')({
 });
 
 // sets up a google translate client with the right creds
-let translater = require('@google-cloud/translate')({
+let google = require('@google-cloud/translate')({
   projectId: process.env.GOOGLE_PROJECT_ID,
   key: process.env.GOOGLE_API_KEY,
 });
@@ -33,10 +33,8 @@ sequelize.authenticate().then(() => {
   Tweet.sync({force:true});
 }).catch(err => console.error(err));
 
-
 // export functions
 module.exports = {
-  
   selectRecentTweets: async (limit=10) => Tweet.findAll({
     order:[['created_at','DESC']], limit
   }),
@@ -52,8 +50,7 @@ module.exports = {
     since_id:since_tweet_id
   })).data.map(row => ({id:row.id_str, text:row.text, created_at:row.created_at})),
   
-  toSpanish: async text => (await translater.translate(text, 'es'))[0],
-  saveTweet: async tweet => await Tweet.create(tweet),
   postTweet: async text => await twitter.post('statuses/update', { status: text.substr(0,140) }),
-  
+  toSpanish: async text => (await google.translate(text, 'es'))[0],
+  saveTweet: async tweet => await Tweet.create(tweet),
 };
