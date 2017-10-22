@@ -1,0 +1,33 @@
+{
+  "name": "donaldo-trumpo",
+  "version": "0.0.1",
+  "description": "Beep beep tweet!",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "twit": "^2.2.9",
+    "@google-cloud/translate": "^1.0.0",
+    "sequelize": "^4.15.2",
+    "sqlite3": "^3.1.13",
+    "koa": "^2.3.0",
+    "koa-router": "^7.2.1"
+  },
+  "engines": {
+    "node": "7.7.4"
+  },
+  "repository": {
+    "url": ""
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "twitter",
+    "twitterbot",
+    "bot",
+    "koa",
+    "sqlite3",
+    "google-translate"
+  ]
+}
