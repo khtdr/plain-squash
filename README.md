@@ -5,7 +5,7 @@
 Glitch Link:
 
 
-https://glitch.com/edit/#!/donald_espanol
+https://glitch.com/edit/#!/donald-espanol
 
 
 uses cron-job.org to hit process.env.UDPATE_ROUTE every 30 minutes
