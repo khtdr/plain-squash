@@ -1,3 +1,5 @@
+const Entities = new require('html-entities').AllHtmlEntities();
+
 // sets up a twitter client with the correct credentials
 let twitter = new require('twit')({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -48,7 +50,9 @@ module.exports = {
     screen_name:"realDonaldTrump",
     include_rts:false,
     since_id:since_tweet_id
-  })).data.map(row => ({id:row.id_str, text:row.text, created_at:row.created_at})),
+  })).data.map(row => ({
+    id:row.id_str, text:Entities.decode(row.text), created_at:row.created_at
+  })),
   
   postTweet: async text => await twitter.post('statuses/update', { status: text.substr(0,140) }),
   toSpanish: async text => (await google.translate(text, 'es'))[0],

@@ -12,7 +12,8 @@
     "sequelize": "^4.15.2",
     "sqlite3": "^3.1.13",
     "koa": "^2.3.0",
-    "koa-router": "^7.2.1"
+    "koa-router": "^7.2.1",
+    "html-entities": "^1.2.1"
   },
   "engines": {
     "node": "7.7.4"
