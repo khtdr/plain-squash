@@ -1,4 +1,4 @@
-const Entities = new require('html-entities').AllHtmlEntities();
+const Entities = new (require('html-entities').AllHtmlEntities)();
 
 // sets up a twitter client with the correct credentials
 let twitter = new require('twit')({
