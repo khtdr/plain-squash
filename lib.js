@@ -54,7 +54,7 @@ module.exports = {
     id:row.id_str, text:Entities.decode(row.text), created_at:row.created_at
   })),
   
-  postTweet: async text => await twitter.post('statuses/update', { status: text.substr(0,140) }),
+  postTweet: async text => await twitter.post('statuses/update', { status: text.substr(0,280) }),
   toSpanish: async text => (await google.translate(text, 'es'))[0],
   saveTweet: async tweet => await Tweet.create(tweet),
 };
